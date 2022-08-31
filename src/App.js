@@ -17,7 +17,6 @@ class App extends React.Component {
       inputName: '',
       carregando: false,
       logado: false,
-      searchDisabled: true,
     };
   }
 
@@ -40,15 +39,8 @@ class App extends React.Component {
     });
   };
 
-  searchChange = (event) => {
-    const { target: { value } } = event;
-    if (value.length >= 2) { this.setState({ searchDisabled: false }); } else {
-      (this.setState({ searchDisabled: true }));
-    }
-  };
-
   render() {
-    const { carregando, disabled, inputName, logado, searchDisabled } = this.state;
+    const { carregando, disabled, inputName, logado } = this.state;
 
     return (
       <div>
@@ -68,10 +60,7 @@ class App extends React.Component {
           <Route
             exact
             path="/search"
-            render={ () => (<Search
-              searchDisabled={ searchDisabled }
-              searchChange={ this.searchChange }
-            />) }
+            render={ () => (<Search />) }
           />
           <Route exact path="/album/:id" component={ Album } />
           <Route exact path="/favorites" component={ Favorites } />
