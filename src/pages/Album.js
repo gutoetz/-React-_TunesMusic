@@ -37,8 +37,13 @@ class Album extends React.Component {
   pegandoFavoritas = async () => {
     this.setState({ carregando: true });
     const favoritas = await getFavoriteSongs();
-    console.log(favoritas);
     this.setState({ favoritas, carregando: false });
+  };
+
+  att = () => {
+    this.setState({ carregando: true });
+    this.pegandoFavoritas();
+    this.setState({ carregando: false });
   };
 
   render() {
@@ -62,7 +67,8 @@ class Album extends React.Component {
                   key={ musica.trackId }
                   trackName={ musica.trackName }
                   previewUrl={ musica.previewUrl }
-                  trackId={ musica.trackId }
+                  trackId={ Number(musica.trackId) }
+                  att={ this.att }
                   check={
                     favoritas.filter((music) => (
                       music.trackId === musica.trackId)).length !== 0

@@ -30,6 +30,8 @@ export default class MusicCard extends React.Component {
     } else {
       await removeSong(musica);
     }
+    const { att } = this.props;
+    att();
     this.setState({ carregando: false });
   };
 
@@ -53,6 +55,7 @@ export default class MusicCard extends React.Component {
           Favorita
           <input
             data-testid={ `checkbox-music-${trackId}` }
+            id={ `checkbox-music-${trackId}` }
             type="checkbox"
             onChange={ this.favoriteChange }
             checked={ checked }
@@ -65,6 +68,8 @@ export default class MusicCard extends React.Component {
 }
 
 MusicCard.propTypes = {
+  att: PropTypes.func.isRequired,
+  check: PropTypes.bool.isRequired,
   musica: PropTypes.shape({}).isRequired,
   previewUrl: PropTypes.string.isRequired,
   trackId: PropTypes.number.isRequired,

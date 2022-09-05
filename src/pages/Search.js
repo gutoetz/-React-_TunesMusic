@@ -40,6 +40,7 @@ class Search extends React.Component {
   render() {
     const { searchInput, searchDisabled, albumArray,
       artistaSearch, carregando, falhou } = this.state;
+    if (carregando) return <Carregando />;
     return (
       <div data-testid="page-search">
         <Header />
@@ -59,7 +60,6 @@ class Search extends React.Component {
 
         </button>
         <div>
-          {carregando === true ? <Carregando /> : null}
           {artistaSearch !== '' ? (<p>{`Resultado de álbuns de: ${artistaSearch}`}</p>)
             : (null)}
           {falhou === true ? (<h1>Nenhum álbum foi encontrado</h1>) : (null)}
