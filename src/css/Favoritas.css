@@ -1,0 +1,13 @@
+.tittle {
+  font-size: 40px;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.Favoritas {
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    width: 70%;
+    margin-top: 60px;
+}

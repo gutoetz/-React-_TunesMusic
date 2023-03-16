@@ -3,6 +3,8 @@ import React from 'react';
 import Header from '../components/Header';
 import Carregando from './Carregando';
 import { getUser, updateUser } from '../services/userAPI';
+import '../css/Loading.css';
+import '../css/ProfileEdit.css';
 
 class ProfileEdit extends React.Component {
   constructor(props) {
@@ -70,62 +72,68 @@ class ProfileEdit extends React.Component {
     return (
       <div data-testid="page-profile-edit">
         <Header />
-        {carregando ? (<Carregando />)
+        {carregando ? (
+          <div className="load">
+            <span className="c-loader" />
+            <Carregando />
+          </div>
+        )
           : (
-            <form>
-              <label htmlFor="name">
-                Nome:
-                <input
-                  onChange={ this.handleChange }
-                  data-testid="edit-input-name"
-                  type="text"
-                  id="name"
-                  value={ name }
-                />
-              </label>
-              <label htmlFor="email">
-                E-mail:
-                <input
-                  onChange={ this.handleChange }
-                  type="email"
-                  data-testid="edit-input-email"
-                  id="email"
-                  value={ email }
-                />
-              </label>
-              <label htmlFor="description">
-                description:
+            <section className="container-form">
+              <form>
+                <label htmlFor="name">
+                  Nome:
+                  <input
+                    onChange={ this.handleChange }
+                    data-testid="edit-input-name"
+                    type="text"
+                    id="name"
+                    value={ name }
+                  />
+                </label>
+                <label htmlFor="email">
+                  E-mail:
+                  <input
+                    onChange={ this.handleChange }
+                    type="email"
+                    data-testid="edit-input-email"
+                    id="email"
+                    value={ email }
+                  />
+                </label>
+                <label htmlFor="description">
+                  description:
+                  <input
+                    onChange={ this.handleChange }
+                    type="text"
+                    data-testid="edit-input-description"
+                    id="description"
+                    value={ description }
+                  />
+                </label>
+                <label htmlFor="image">
+                  Image:
 
-                <input
-                  onChange={ this.handleChange }
-                  type="text"
-                  data-testid="edit-input-description"
-                  id="description"
-                  value={ description }
-                />
-              </label>
-              <label htmlFor="image">
-                Image:
+                  <input
+                    onChange={ this.handleChange }
+                    type="text"
+                    data-testid="edit-input-image"
+                    id="image"
+                    value={ image }
+                  />
+                </label>
 
-                <input
-                  onChange={ this.handleChange }
-                  type="text"
-                  data-testid="edit-input-image"
-                  id="image"
-                  value={ image }
-                />
-              </label>
+                <button
+                  type="button"
+                  data-testid="edit-button-save"
+                  disabled={ disabled }
+                  onClick={ this.handleClick }
+                >
+                  Editar perfil
 
-              <button
-                type="button"
-                data-testid="edit-button-save"
-                disabled={ disabled }
-                onClick={ this.handleClick }
-              >
-                Editar perfil
-
-              </button>
-            </form>
+                </button>
+              </form>
+            </section>
           )}
       </div>
     );

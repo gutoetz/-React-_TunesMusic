@@ -1,0 +1,26 @@
+.box-contain {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 65%;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.albumPresent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 3px;
+    padding: 10px;
+}
+
+.albumPresent img {
+    width: 60%;
+}
+
+.musicSection {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}

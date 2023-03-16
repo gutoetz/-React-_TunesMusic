@@ -1,0 +1,73 @@
+Header {
+    margin: 0;
+    border: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #333;
+    height: 60px;
+    align-items: center;
+}
+
+.link {
+  width: 33%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 94%;
+  color: white;
+  text-decoration: none;
+  border: 2px solid black;
+  font-size: 18px;
+  letter-spacing: 5px;
+  transition: ease-in-out 300ms;
+}
+
+.link:hover {
+    background-color: rgb(32, 32, 32);
+}
+
+.link:hover {
+    background-color: rgb(15, 15, 15);
+}
+
+.links {
+    height: 100%;
+    margin-left: 7%;
+    display: flex;
+    width: 50%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.user {
+    height: 94%;
+    margin-right: 10%;
+    width: 12%;
+    border: black solid 2px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  transition: ease-in-out 500ms;
+color: white;
+}
+
+.user:hover {
+    background-color: rgb(71, 71, 71);
+}
+
+.user:hover {
+    background-color: rgb(65, 65, 65);
+}
+
+header div p {
+  color: white;
+  font-size: 20px;
+  text-transform: capitalize;
+}
+
+.imagemPerfil {
+   height: 90%;
+   border-radius: 50%;
+}

@@ -5,6 +5,7 @@ import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 import Carregando from './Carregando';
+import '../css/MusicDisplay.css';
 
 class Album extends React.Component {
   constructor(props) {
@@ -28,6 +29,7 @@ class Album extends React.Component {
     const { match: { params: { id } } } = this.props;
     const musicas = await getMusics(id);
     const { artistName, collectionName, artworkUrl100 } = musicas[0];
+    console.log(musicas);
     this.setState({ artist: artistName,
       albumName: collectionName,
       musics: musicas,
@@ -49,12 +51,17 @@ class Album extends React.Component {
   render() {
     const { artist, albumName, musics, artworkUrl100,
       carregando, favoritas } = this.state;
-    if (carregando) { return <Carregando />; }
     return (
       <div data-testid="page-album">
         <Header />
-        <div>
-          <section>
+        {carregando === true ? (
+          <div className="load">
+            <span className="c-loader" />
+            <Carregando />
+          </div>
+        ) : (null)}
+        <div className="box-contain">
+          <section className="albumPresent">
             <img src={ artworkUrl100 } alt={ albumName } />
             <h1 data-testid="artist-name">{artist}</h1>
             <h3 data-testid="album-name">{albumName}</h3>
@@ -68,6 +75,7 @@ class Album extends React.Component {
                   trackName={ musica.trackName }
                   previewUrl={ musica.previewUrl }
                   trackId={ Number(musica.trackId) }
+                  image={ musica.artworkUrl100 }
                   att={ this.att }
                   check={
                     favoritas.filter((music) => (

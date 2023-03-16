@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Carregando from '../pages/Carregando';
 import { addSong, removeSong } from '../services/favoriteSongsAPI';
+import '../css/MusicCard.css';
 
 export default class MusicCard extends React.Component {
   constructor() {
@@ -37,31 +38,44 @@ export default class MusicCard extends React.Component {
 
   render() {
     const { carregando, checked } = this.state;
-
-    const { trackName, previewUrl, trackId } = this.props;
-    if (carregando) return <Carregando />;
+    const { trackName, previewUrl, trackId, image } = this.props;
     return (
-      <div>
-        <p>{trackName}</p>
-        <audio data-testid="audio-component" src={ previewUrl } controls>
-          <track kind="captions" />
-          O seu navegador não suporta o elemento
-          {' '}
-          {' '}
-          <code>audio</code>
-          .
-        </audio>
-        <label htmlFor={ `checkbox-music-${trackId}` }>
-          Favorita
-          <input
-            data-testid={ `checkbox-music-${trackId}` }
-            id={ `checkbox-music-${trackId}` }
-            type="checkbox"
-            onChange={ this.favoriteChange }
-            checked={ checked }
-          />
+      <div className="contain">
+        {carregando === true ? (
+          <div className="load">
+            <span className="c-loader" />
+            <Carregando />
+          </div>
+        )
+          : (
+            <div className="card-music">
+              <section className="musicICont">
+                <img alt={ trackId } src={ image } />
+              </section>
+              <section>
+                <p>{trackName}</p>
+                <audio data-testid="audio-component" src={ previewUrl } controls>
+                  <track kind="captions" />
+                  O seu navegador não suporta o elemento
+                  {' '}
+                  {' '}
+                  <code>audio</code>
+                  .
+                </audio>
+              </section>
+              <label htmlFor={ `checkbox-music-${trackId}` }>
+                Favorita
+                <input
+                  data-testid={ `checkbox-music-${trackId}` }
+                  id={ `checkbox-music-${trackId}` }
+                  type="checkbox"
+                  onChange={ this.favoriteChange }
+                  checked={ checked }
+                />
 
-        </label>
+              </label>
+            </div>
+          )}
       </div>
     );
   }
@@ -70,6 +84,7 @@ export default class MusicCard extends React.Component {
 MusicCard.propTypes = {
   att: PropTypes.func.isRequired,
   check: PropTypes.bool.isRequired,
+  image: PropTypes.string.isRequired,
   musica: PropTypes.shape({}).isRequired,
   previewUrl: PropTypes.string.isRequired,
   trackId: PropTypes.number.isRequired,

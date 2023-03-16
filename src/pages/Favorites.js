@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import MusicCard from '../components/MusicCard';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 import Carregando from './Carregando';
+import '../css/Favoritas.css';
 
 class Favorites extends React.Component {
   constructor(props) {
@@ -35,10 +36,16 @@ class Favorites extends React.Component {
 
   render() {
     const { carregando, favoritas } = this.state;
-    if (carregando) return <Carregando />;
     return (
       <div data-testid="page-favorites">
         <Header />
+        <h1 className="tittle">Musicas Favoritas</h1>
+        {carregando === true ? (
+          <div className="load">
+            <span className="c-loader" />
+            <Carregando />
+          </div>
+        ) : (null)}
         <div className="Favoritas">
           {favoritas.map((musica) => (<MusicCard
             musica={ musica }
@@ -46,6 +53,7 @@ class Favorites extends React.Component {
             trackName={ musica.trackName }
             previewUrl={ musica.previewUrl }
             trackId={ Number(musica.trackId) }
+            image={ musica.artworkUrl100 }
             att={ this.att }
             check={
               favoritas.filter((music) => (
